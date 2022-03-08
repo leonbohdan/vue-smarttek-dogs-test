@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <div class="d-flex align-center justify-space-between mb-5 mt-5">
+    <div class="d-flex align-center justify-space-between mt-5">
       <span
         class="d-flex align-center pointer"
         @click="showAllBreeds = !showAllBreeds"
@@ -21,12 +21,18 @@
         </svg>
       </span>
 
-      <span>Сортировка по алфавиту</span>
+      <span>
+        <v-switch
+          v-model="ABCSort"
+          label="Сортировка по алфавиту"
+          inset
+        ></v-switch>
+      </span>
     </div>
 
     <div class="d-flex align-center flex-wrap">
       <div :class="['showAllBreeds', { open: showAllBreeds }]">
-        <div v-if="true" class="breed checked mr-3 mb-4">Все пёсели</div>
+        <div v-if="true" class="breed checked mr-3 mb-8">Все пёсели</div>
 
         <span
           v-for="breed in breeds"
@@ -58,6 +64,7 @@ export default {
       dogs: [],
       breeds: [],
       showAllBreeds: false,
+      ABCSort: false,
     };
   },
   methods: {
