@@ -2,6 +2,7 @@
   <v-img max-height="190" max-width="280" :src="imageLink" class="image mb-5">
     <svg
       class="svgHeart pointer"
+      @click="addToFavourite(imageLink)"
       width="29"
       height="26"
       viewBox="0 0 29 26"
@@ -17,7 +18,7 @@
       />
 
       <path
-        class="svg-path-filled"
+        :class="['svg-path-filled', { inFavorites: false }]"
         d="M13.758 25.7c.412.4 1.072.4 1.484 0l11.133-10.826a8.555 8.555 0 0 0 0-12.331c-3.249-3.16-8.37-3.375-11.875-.647-3.504-2.728-8.626-2.512-11.875.647a8.555 8.555 0 0 0 0 12.331L13.758 25.7Z"
         fill="#fff"
       />
@@ -34,7 +35,11 @@ export default {
       default: "",
     },
   },
-  data: () => ({}),
+  methods: {
+    addToFavourite(dog) {
+      this.$store.dispatch("addFavouriteDogs", dog);
+    },
+  },
 };
 </script>
 
@@ -54,6 +59,8 @@ export default {
 
     .svg-path-filled
       display: none
+      &.inFavorites
+        display: block
 
     &:hover
       fill: #fff

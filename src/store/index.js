@@ -32,6 +32,9 @@ export default new Vuex.Store({
     favouriteDogs(state) {
       return state.favouriteDogs;
     },
+    isFavouriteDogs(state) {
+      return state.favouriteDogs;
+    },
   },
   mutations: {
     ADD_DOGS(state, event) {
@@ -41,7 +44,12 @@ export default new Vuex.Store({
       state.breeds = event;
     },
     ADD_FAVOURITE_DOGS(state, dog) {
-      state.favouriteDogs = dog;
+      state.favouriteDogs.push(dog);
+      // localStorage.removeItem("favouriteDogs");
+      localStorage.setItem(
+        "favouriteDogs",
+        JSON.stringify(state.favouriteDogs)
+      );
     },
     SHOW_ALL_BREEDS(state) {
       state.showAllBreeds = !state.showAllBreeds;
@@ -90,6 +98,21 @@ export default new Vuex.Store({
     addFavouriteDogs({ commit }, dog) {
       commit("ADD_FAVOURITE_DOGS", dog);
     },
+    initialiseFavouriteDogs({ commit }) {
+      if (localStorage.getItem("favouriteDogs") && !this.state.favouriteDogs) {
+        let favDogs = JSON.parse(localStorage.getItem("favouriteDogs"));
+        console.log("favDogs", favDogs);
+        commit("ADD_FAVOURITE_DOGS", favDogs);
+        // localStorage.removeItem("favouriteDogs");
+      }
+    },
+    // initialiseFavouriteDogs() {
+    //   if (localStorage.getItem("favouriteDogs")) {
+    //     let favDogs = JSON.parse(localStorage.getItem("favouriteDogs"));
+    //     console.log("favDogs", favDogs);
+    //     console.log("favDogs");
+    //   }
+    // },
     // async fetchDogs2({ commit }) {
     //   const res = await fetch("https://dog.ceo/api/breeds/image/random/20");
     //   const dogs = await res.json();
