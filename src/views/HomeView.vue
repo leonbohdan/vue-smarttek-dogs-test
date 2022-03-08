@@ -1,9 +1,13 @@
 <template>
   <v-container>
     <div class="d-flex align-center justify-space-between mb-5 mt-5">
-      <span class="d-flex align-center pointer">
+      <span
+        class="d-flex align-center pointer"
+        @click="showAllBreeds = !showAllBreeds"
+      >
         <span class="mr-2">Все породы</span>
         <svg
+          :class="['arrowSvg', { open: showAllBreeds }]"
           width="9"
           height="5"
           viewBox="0 0 9 5"
@@ -21,13 +25,17 @@
     </div>
 
     <div class="d-flex align-center flex-wrap">
-      <span
-        v-for="breed in breeds"
-        :key="breed"
-        class="breed mr-3 mb-2 pointer"
-      >
-        {{ breed }}
-      </span>
+      <div :class="['showAllBreeds', { open: showAllBreeds }]">
+        <div v-if="true" class="breed checked mr-3 mb-4">Все пёсели</div>
+
+        <span
+          v-for="breed in breeds"
+          :key="breed"
+          class="breed d-inline-block mr-3 mb-4 pointer"
+        >
+          {{ breed }}
+        </span>
+      </div>
     </div>
 
     <div class="d-flex align-center flex-wrap justify-space-between">
@@ -49,6 +57,7 @@ export default {
     return {
       dogs: [],
       breeds: [],
+      showAllBreeds: false,
     };
   },
   methods: {
@@ -84,12 +93,37 @@ export default {
 </script>
 
 <style lang="sass">
+.showAllBreeds
+  max-height: 0
+  overflow: hidden
+  transition: all .3s ease-in-out
+  &.open
+    margin-bottom: 10px
+    max-height: 1000px
+
 .breed
   padding: 4px 12px
   border: 2px solid #626262
   border-radius: 20px
-  transition: .2s background-color ease-in-out
+  transition: background-color .2s ease-in-out
+
   &:hover
     background-color: #EEEEEE
-    transition: .2s background-color ease-in-out
+
+  &::first-letter
+    text-transform: uppercase
+
+  &.checked
+    width: fit-content
+    border: 2px solid #283593
+    color: #283593
+    font-weight: 700
+
+    &:hover
+      background-color: #fff
+
+.arrowSvg
+  transition: transform .2s ease-in-out
+  &.open
+    transform: rotate(-180deg)
 </style>

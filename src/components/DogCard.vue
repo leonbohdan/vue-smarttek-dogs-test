@@ -43,10 +43,9 @@ export default {
   position: relative
   background: linear-gradient(3.21deg, #000000 -15.62%, rgba(0, 0, 0, 0) 45.69%)
   border-radius: 8px
-  transition: .2s transform ease-in-out
+  transition: transform .2s ease-in-out
   &:hover
     transform: scale(1.02)
-    transition: .2s transform ease-in-out
 
   .svgHeart
     position: absolute
