@@ -5,9 +5,12 @@
 </template>
 
 <script>
+// import DogCard from "@/components/DogCard.vue";
+
 export default {
   name: "DogBreedPage",
+  components: {
+    // DogCard,
+  },
 };
 </script>
-
-<style lang="sass"></style>

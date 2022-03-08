@@ -57,6 +57,8 @@ export default {
 </script>
 
 <style lang="sass">
+@import "assets/__init.sass"
+
 .logo
   font-size: 30px
   font-weight: 700
