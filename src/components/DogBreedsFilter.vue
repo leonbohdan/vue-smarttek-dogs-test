@@ -27,7 +27,7 @@
 
           <svg
             class="deleteBreedSvg pointer"
-            @click="fetchAllDogs()"
+            @click="clearBreed()"
             width="7"
             height="6"
             viewBox="0 0 7 6"
@@ -47,7 +47,7 @@
 
       <span>
         <v-switch
-          v-model="ABCSort"
+          @click="ABCSortButton()"
           label="Сортировка по алфавиту"
           inset
         ></v-switch>
@@ -72,10 +72,15 @@ export default {
   },
   methods: {
     openShowAllBreeds() {
-      console.log("showAllBreeds");
       this.$store.dispatch("showAllBreeds");
     },
+    clearBreed() {
+      this.$store.dispatch("fetchDogs");
+      this.$store.dispatch("clearChoosedBreed");
+    },
+    ABCSortButton() {
+      this.$store.dispatch("ABCSort");
+    },
   },
-  mounted() {},
 };
 </script>

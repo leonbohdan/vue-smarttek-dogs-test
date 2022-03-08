@@ -12,5 +12,6 @@ export default {
   components: {
     // DogCard,
   },
+  mounted() {},
 };
 </script>

@@ -20,15 +20,18 @@ export default {
   computed: {
     ...mapGetters(["allBreeds", "showAllBreeds"]),
   },
-  // created() {
-  //   this.$store.dispatch("getBreeds");
-  // },
+  created() {
+    this.$store.dispatch("getBreeds");
+  },
   methods: {
     isChoosedBreed(breed = "") {
-      this.$router.push({
-        name: "breed",
-        params: {},
-      });
+      if (this.$route.name !== "breed") {
+        this.$router.push({
+          name: "breed",
+        });
+      }
+      this.$store.dispatch("showAllBreeds");
+      this.$store.dispatch("choosedBreed", breed);
       console.log("breed", breed);
     },
   },

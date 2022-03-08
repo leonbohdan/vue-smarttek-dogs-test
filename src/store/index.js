@@ -8,6 +8,7 @@ export default new Vuex.Store({
   state: {
     dogs: [],
     breeds: [],
+    favouriteDogs: [],
     choosedBreed: "",
     showAllBreeds: false,
     ABCSort: false,
@@ -28,6 +29,9 @@ export default new Vuex.Store({
     ABCSort(state) {
       return state.ABCSort;
     },
+    favouriteDogs(state) {
+      return state.favouriteDogs;
+    },
   },
   mutations: {
     ADD_DOGS(state, event) {
@@ -36,8 +40,17 @@ export default new Vuex.Store({
     ADD_BREEDS(state, event) {
       state.breeds = event;
     },
+    ADD_FAVOURITE_DOGS(state, dog) {
+      state.favouriteDogs = dog;
+    },
     SHOW_ALL_BREEDS(state) {
       state.showAllBreeds = !state.showAllBreeds;
+    },
+    CHOOSED_BREED(state, event) {
+      state.choosedBreed = event;
+    },
+    ABC_SORT(state) {
+      state.ABCSort = !state.ABCSort;
     },
   },
   actions: {
@@ -61,6 +74,21 @@ export default new Vuex.Store({
     },
     showAllBreeds({ commit }) {
       commit("SHOW_ALL_BREEDS");
+    },
+    ABCSort({ commit }) {
+      commit("ABC_SORT");
+    },
+    choosedBreed({ commit }, breed) {
+      FetchService.getChoosedBreed(breed).then((res) => {
+        commit("ADD_DOGS", res.data.message);
+        commit("CHOOSED_BREED", breed);
+      });
+    },
+    clearChoosedBreed({ commit }) {
+      commit("CHOOSED_BREED", "");
+    },
+    addFavouriteDogs({ commit }, dog) {
+      commit("ADD_FAVOURITE_DOGS", dog);
     },
     // async fetchDogs2({ commit }) {
     //   const res = await fetch("https://dog.ceo/api/breeds/image/random/20");
