@@ -7,7 +7,7 @@
 
     <dog-breeds-filter />
 
-    <div class="d-flex align-center flex-wrap justify-space-between">
+    <div class="dogsView d-flex align-center flex-wrap">
       <dog-card
         v-for="(dog, i) in allDogs"
         :key="i"

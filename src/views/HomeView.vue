@@ -2,7 +2,7 @@
   <v-container>
     <dog-breeds-filter />
 
-    <div class="d-flex align-center flex-wrap justify-space-between">
+    <div class="dogsView d-flex align-center flex-wrap">
       <dog-card
         v-for="(dog, i) in allDogs"
         :key="i"
@@ -52,13 +52,20 @@ export default {
 </script>
 
 <style lang="sass">
+@import "./../assets/__init.sass"
+
+.dogsView
+  justify-content: space-between
+  +mobile750
+    justify-content: center
+
 .showAllBreeds
   max-height: 0
   overflow: hidden
   transition: all .3s ease-in-out
   &.open
     margin-bottom: 10px
-    max-height: 1000px
+    max-height: 2000px
 
 .breed
   padding: 4px 12px

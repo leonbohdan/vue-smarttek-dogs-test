@@ -1,5 +1,14 @@
 <template>
-  <v-img max-height="290" max-width="360" :src="imageLink" class="image mb-5">
+  <v-img
+    max-height="290"
+    max-width="360"
+    min-height="50"
+    min-width="100"
+    width="100%"
+    transition
+    :src="imageLink"
+    class="image mb-5"
+  >
     <svg
       v-if="isAlreadyInFavorites"
       @click="removeFromFavourite(index)"
@@ -51,6 +60,7 @@
     </svg>
 
     <span class="breedName">{{ dogBreed }}</span>
+    <!-- </div> -->
   </v-img>
 </template>
 

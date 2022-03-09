@@ -3,4 +3,15 @@
   
 .firstUpper::first-letter
   text-transform: uppercase
-  
+
+@mixin mobile
+  @media (max-width: 1024px)
+    @content
+
+@mixin mobile750
+  @media (max-width: 750px)
+    @content
+
+@mixin mobile_min
+  @media (min-width: 1025px)
+    @content

@@ -2,7 +2,7 @@
   <v-container class="favourites">
     <h1 class="mb-5">Избранные пёсели</h1>
 
-    <div class="d-flex align-center flex-wrap justify-space-between">
+    <div class="dogsView d-flex align-center flex-wrap">
       <dog-card
         v-for="(dog, i) in favouriteDogs"
         :key="i"

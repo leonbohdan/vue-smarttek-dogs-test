@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="d-flex align-center justify-space-between mb-5">
+    <div class="filter d-flex align-center justify-space-between mb-5">
       <div class="d-flex align-center">
         <span
           class="d-flex align-center pointer mr-5"
@@ -92,3 +92,11 @@ export default {
   },
 };
 </script>
+
+<style lang="sass">
+@import "./../assets/__init.sass"
+
+.filter
+  +mobile
+    flex-direction: column
+</style>
