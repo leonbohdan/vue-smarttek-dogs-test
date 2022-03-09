@@ -32,9 +32,9 @@ export default new Vuex.Store({
     favouriteDogs(state) {
       return state.favouriteDogs;
     },
-    isFavouriteDogs(state) {
-      return state.favouriteDogs;
-    },
+    // isAlreadyInFavorites(state, currentDogLink) {
+    //   return state.favoriteDogs.indexOf(currentDogLink) > -1;
+    // },
   },
   mutations: {
     ADD_DOGS(state, event) {

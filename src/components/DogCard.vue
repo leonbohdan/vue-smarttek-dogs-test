@@ -18,7 +18,7 @@
       />
 
       <path
-        :class="['svg-path-filled', { inFavorites: false }]"
+        :class="['svg-path-filled', { isInFavorites: isAlreadyInFavorites }]"
         d="M13.758 25.7c.412.4 1.072.4 1.484 0l11.133-10.826a8.555 8.555 0 0 0 0-12.331c-3.249-3.16-8.37-3.375-11.875-.647-3.504-2.728-8.626-2.512-11.875.647a8.555 8.555 0 0 0 0 12.331L13.758 25.7Z"
         fill="#fff"
       />
@@ -27,6 +27,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "DogCard",
   props: {
@@ -35,10 +37,20 @@ export default {
       default: "",
     },
   },
+  computed: {
+    ...mapGetters(["favouriteDogs"]),
+    isAlreadyInFavorites() {
+      return this.favouriteDogs.indexOf(this.imageLink) > -1;
+    },
+  },
   methods: {
     addToFavourite(dog) {
       this.$store.dispatch("addFavouriteDogs", dog);
     },
+  },
+  mounted() {
+    console.log("isAlreadyInFavorites", this.isAlreadyInFavorites);
+    console.log("this.favouriteDogs", this.favouriteDogs);
   },
 };
 </script>
@@ -59,7 +71,7 @@ export default {
 
     .svg-path-filled
       display: none
-      &.inFavorites
+      &.isInFavorites
         display: block
 
     &:hover
