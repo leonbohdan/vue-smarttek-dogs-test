@@ -9,7 +9,7 @@
 
     API: https://dog.ceo/dog-api
 
-      Макет-пример: https://www.figma.com/file/qikieeE86iZxUzdj4TpwJM/frontend_test
+    Макет-пример: https://www.figma.com/file/qikieeE86iZxUzdj4TpwJM/frontend_test
  
 ## Главная страница
     - Отображает список изображений всех собак (по умолчанию в рандомном порядке).
