@@ -15,10 +15,11 @@
 
 <script>
 import { mapGetters } from "vuex";
+
 export default {
   name: "DogBreeds",
   computed: {
-    ...mapGetters(["allBreeds", "showAllBreeds"]),
+    ...mapGetters(["allBreeds", "showAllBreeds", "choosedBreed"]),
   },
   created() {
     this.$store.dispatch("getBreeds");
@@ -32,8 +33,12 @@ export default {
       }
       this.$store.dispatch("showAllBreeds");
       this.$store.dispatch("choosedBreed", breed);
-      console.log("breed", breed);
     },
+  },
+  mounted() {
+    if (!this.choosedBreed) {
+      this.$store.dispatch("fetchDogs");
+    }
   },
 };
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="d-flex align-center justify-space-between">
+    <div class="d-flex align-center justify-space-between mb-5">
       <div class="d-flex align-center">
         <span
           class="d-flex align-center pointer mr-5"
@@ -47,6 +47,7 @@
 
       <span>
         <v-switch
+          v-if="!isBreedPage"
           @click="ABCSortButton()"
           label="Сортировка по алфавиту"
           inset
@@ -69,6 +70,9 @@ export default {
   },
   computed: {
     ...mapGetters(["showAllBreeds", "choosedBreed", "ABCSort"]),
+    isBreedPage() {
+      return this.$route.name === "breed";
+    },
   },
   methods: {
     openShowAllBreeds() {
@@ -79,7 +83,11 @@ export default {
       this.$store.dispatch("clearChoosedBreed");
     },
     ABCSortButton() {
-      this.$store.dispatch("ABCSort");
+      this.$store.dispatch("isSortedAlphabetical");
+
+      if (!this.ABCSort) {
+        this.$store.dispatch("shuffleDogs");
+      }
     },
   },
 };

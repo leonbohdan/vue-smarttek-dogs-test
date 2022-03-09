@@ -1,6 +1,6 @@
 <template>
   <v-container class="breedPage">
-    <h1>Dog breed page</h1>
+    <h1 class="mb-5">Dog breed page</h1>
 
     <dog-breeds-filter />
 

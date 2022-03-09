@@ -32,6 +32,9 @@ export default new Vuex.Store({
     favouriteDogs(state) {
       return state.favouriteDogs;
     },
+    // isSortedAlphabetical(state) {
+    //   return state.dogs.sort((a, b) => a.breed.localeCompare(b.breed));
+    // },
   },
   mutations: {
     ADD_DOGS(state, event) {
@@ -79,6 +82,10 @@ export default new Vuex.Store({
     },
     ABC_SORT(state) {
       state.ABCSort = !state.ABCSort;
+      state.dogs.sort((a, b) => a.breed.localeCompare(b.breed));
+    },
+    SHUFFLE_DOGS(state) {
+      FetchService.shuffleDogs(state.dogs);
     },
   },
   actions: {
@@ -106,8 +113,11 @@ export default new Vuex.Store({
     showAllBreeds({ commit }) {
       commit("SHOW_ALL_BREEDS");
     },
-    ABCSort({ commit }) {
+    isSortedAlphabetical({ commit }) {
       commit("ABC_SORT");
+    },
+    shuffleDogs({ commit }) {
+      commit("SHUFFLE_DOGS");
     },
     choosedBreed({ commit }, breed) {
       FetchService.getChoosedBreed(breed)
