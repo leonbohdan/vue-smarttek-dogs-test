@@ -3,7 +3,12 @@
     <h1 class="mb-5">Избранные пёсели</h1>
 
     <div class="d-flex align-center flex-wrap justify-space-between">
-      <dog-card v-for="(dog, i) in favouriteDogs" :key="i" :imageLink="dog" />
+      <dog-card
+        v-for="(dog, i) in favouriteDogs"
+        :key="i"
+        :imageLink="dog"
+        :index="i"
+      />
     </div>
   </v-container>
 </template>

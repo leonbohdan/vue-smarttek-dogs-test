@@ -3,7 +3,12 @@
     <dog-breeds-filter />
 
     <div class="d-flex align-center flex-wrap justify-space-between">
-      <dog-card v-for="(dog, i) in allDogs" :key="i" :imageLink="dog" />
+      <dog-card
+        v-for="(dog, i) in allDogs"
+        :key="i"
+        :imageLink="dog"
+        :index="i"
+      />
     </div>
   </v-container>
 </template>

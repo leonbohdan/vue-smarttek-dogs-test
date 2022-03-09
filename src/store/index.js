@@ -32,9 +32,6 @@ export default new Vuex.Store({
     favouriteDogs(state) {
       return state.favouriteDogs;
     },
-    // isAlreadyInFavorites(state, currentDogLink) {
-    //   return state.favoriteDogs.indexOf(currentDogLink) > -1;
-    // },
   },
   mutations: {
     ADD_DOGS(state, event) {
@@ -42,6 +39,14 @@ export default new Vuex.Store({
     },
     ADD_BREEDS(state, event) {
       state.breeds = event;
+    },
+    REMOVE_FAVOURITE_DOGS(state, index) {
+      state.favouriteDogs.splice(index, 1);
+
+      localStorage.setItem(
+        "favouriteDogs",
+        JSON.stringify(state.favouriteDogs)
+      );
     },
     ADD_FAVOURITE_DOGS(state, favDog) {
       state.favouriteDogs.push(favDog);
@@ -109,6 +114,9 @@ export default new Vuex.Store({
     },
     clearChoosedBreed({ commit }) {
       commit("CHOOSED_BREED", "");
+    },
+    removeFavouriteDogs({ commit }, index) {
+      commit("REMOVE_FAVOURITE_DOGS", index);
     },
     addFavouriteDogs({ commit }, dog) {
       commit("ADD_FAVOURITE_DOGS", dog);
