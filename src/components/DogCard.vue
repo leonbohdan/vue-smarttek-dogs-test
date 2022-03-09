@@ -50,7 +50,7 @@
       />
     </svg>
 
-    <span class="breedName">{{ breedName }}</span>
+    <span class="breedName">{{ dogBreed }}</span>
   </v-img>
 </template>
 
@@ -64,15 +64,14 @@ export default {
       type: String,
       default: "",
     },
+    dogBreed: {
+      type: String,
+      default: "",
+    },
     index: {
       type: Number,
       default: 0,
     },
-  },
-  data() {
-    return {
-      breedName: "",
-    };
   },
   computed: {
     ...mapGetters(["favouriteDogs"]),
@@ -81,14 +80,8 @@ export default {
     },
   },
   methods: {
-    getBreedNameFromURL() {
-      const url = new URL(this.imageLink).pathname;
-      let arr = url.split("/");
-      this.breedName = arr[2];
-    },
     addToFavourite(dog) {
       if (!this.isAlreadyInFavorites) {
-        console.log("addToFavourite");
         this.$store.dispatch("addFavouriteDogs", dog);
       }
     },
@@ -97,9 +90,6 @@ export default {
         this.$store.dispatch("removeFavouriteDogs", index);
       }
     },
-  },
-  mounted() {
-    console.log("getBreedNameFromURL", this.getBreedNameFromURL());
   },
 };
 </script>

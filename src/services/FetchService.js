@@ -19,4 +19,28 @@ export default {
   getChoosedBreed(breed = "") {
     return apiClient.get(`/breed/${breed}/images`);
   },
+  getBreedNameFromURL(urls) {
+    let newDog = {
+      image: "",
+      breed: "",
+    };
+
+    let newArr = [];
+
+    urls.map((el) => {
+      const url = new URL(el).pathname;
+      let arr = url.split("/");
+
+      newDog.image = el;
+      newDog.breed = arr[2];
+
+      newArr.push(newDog);
+      newDog = {
+        image: "",
+        breed: "",
+      };
+    });
+
+    return newArr;
+  },
 };

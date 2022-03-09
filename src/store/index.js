@@ -85,7 +85,10 @@ export default new Vuex.Store({
     fetchDogs({ commit }) {
       FetchService.getRandomDogImages()
         .then((response) => {
-          commit("ADD_DOGS", response.data.message);
+          const dogsData = FetchService.getBreedNameFromURL(
+            response.data.message
+          );
+          commit("ADD_DOGS", dogsData);
         })
         .catch((error) => {
           console.log("There was an error:", error.response);
@@ -107,10 +110,17 @@ export default new Vuex.Store({
       commit("ABC_SORT");
     },
     choosedBreed({ commit }, breed) {
-      FetchService.getChoosedBreed(breed).then((res) => {
-        commit("ADD_DOGS", res.data.message);
-        commit("CHOOSED_BREED", breed);
-      });
+      FetchService.getChoosedBreed(breed)
+        .then((response) => {
+          const dogsData = FetchService.getBreedNameFromURL(
+            response.data.message
+          );
+          commit("ADD_DOGS", dogsData);
+          commit("CHOOSED_BREED", breed);
+        })
+        .catch((error) => {
+          console.log("There was an error:", error.response);
+        });
     },
     clearChoosedBreed({ commit }) {
       commit("CHOOSED_BREED", "");

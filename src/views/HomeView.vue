@@ -6,7 +6,8 @@
       <dog-card
         v-for="(dog, i) in allDogs"
         :key="i"
-        :imageLink="dog"
+        :imageLink="dog.image"
+        :dogBreed="dog.breed"
         :index="i"
       />
     </div>
