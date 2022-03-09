@@ -11,7 +11,10 @@
         <div>
           <router-link to="/favourites">
             <span class="favouriteBtn d-flex align-center">
-              <span class="mr-2">Избранные пёсели</span>
+              <span :class="['mr-2', { isFavourite: isFavouritePage }]">
+                Избранные пёсели
+              </span>
+
               <svg
                 width="16"
                 height="14"
@@ -50,6 +53,11 @@
 <script>
 export default {
   name: "App",
+  computed: {
+    isFavouritePage() {
+      return this.$route.name === "favourites";
+    },
+  },
 };
 </script>
 
@@ -59,6 +67,9 @@ export default {
 .logo
   font-size: 30px
   font-weight: 700
+
+.isFavourite
+  text-decoration: underline
 
 .favouriteBtn
   color: #000

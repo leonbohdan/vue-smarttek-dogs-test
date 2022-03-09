@@ -10,6 +10,9 @@ const apiClient = axios.create({
 });
 
 export default {
+  getRandomDogImagesOnScroll(number = 20) {
+    return apiClient.get(`/breeds/image/random/${number}`);
+  },
   getRandomDogImages() {
     return apiClient.get("/breeds/image/random/20");
   },

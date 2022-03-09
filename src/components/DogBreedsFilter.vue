@@ -23,7 +23,7 @@
         </span>
 
         <span v-if="choosedBreed" class="breed checked d-flex align-center">
-          <span class="mr-2">{{ choosedBreed }}</span>
+          <span class="mr-2 firstUpper">{{ choosedBreed }}</span>
 
           <svg
             class="deleteBreedSvg pointer"

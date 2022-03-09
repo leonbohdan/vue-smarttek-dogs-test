@@ -32,9 +32,9 @@ export default new Vuex.Store({
     favouriteDogs(state) {
       return state.favouriteDogs;
     },
-    // isSortedAlphabetical(state) {
-    //   return state.dogs.sort((a, b) => a.breed.localeCompare(b.breed));
-    // },
+    numberOfDogs(state) {
+      return state.dogs.image.length;
+    },
   },
   mutations: {
     ADD_DOGS(state, event) {
@@ -89,6 +89,19 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    fetchDogsOnScroll({ commit }, number = 20) {
+      FetchService.getRandomDogImagesOnScroll(number)
+        .then((response) => {
+          const dogsData = FetchService.getBreedNameFromURL(
+            response.data.message
+          );
+          const newData = this.state.dogs.concat(dogsData);
+          commit("ADD_DOGS", newData);
+        })
+        .catch((error) => {
+          console.log("There was an error:", error.response);
+        });
+    },
     fetchDogs({ commit }) {
       FetchService.getRandomDogImages()
         .then((response) => {

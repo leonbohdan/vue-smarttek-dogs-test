@@ -1,6 +1,9 @@
 <template>
   <v-container class="breedPage">
-    <h1 class="mb-5">Dog breed page</h1>
+    <h1 class="mb-5 firstUpper">
+      <template v-if="choosedBreed">{{ choosedBreed }}</template>
+      <template v-else>Все пёсели</template>
+    </h1>
 
     <dog-breeds-filter />
 
@@ -28,7 +31,7 @@ export default {
     DogCard,
   },
   computed: {
-    ...mapGetters(["allDogs"]),
+    ...mapGetters(["allDogs", "choosedBreed"]),
   },
 };
 </script>

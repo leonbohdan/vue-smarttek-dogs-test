@@ -1,5 +1,5 @@
 <template>
-  <v-img max-height="190" max-width="280" :src="imageLink" class="image mb-5">
+  <v-img max-height="290" max-width="360" :src="imageLink" class="image mb-5">
     <svg
       v-if="isAlreadyInFavorites"
       @click="removeFromFavourite(index)"

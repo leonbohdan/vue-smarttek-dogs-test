@@ -28,15 +28,25 @@ export default {
   computed: {
     ...mapGetters(["allDogs", "showAllBreeds", "choosedBreed", "ABCSort"]),
   },
+  methods: {
+    getNextDogs() {
+      window.onscroll = () => {
+        let bottomOfWindow =
+          document.documentElement.scrollTop + window.innerHeight ===
+          document.documentElement.offsetHeight;
+        if (bottomOfWindow) {
+          this.$store.dispatch("fetchDogsOnScroll");
+        }
+      };
+    },
+  },
   mounted() {
     if (this.$route.name !== "breed") {
       this.$store.dispatch("fetchDogs");
       this.$store.dispatch("clearChoosedBreed");
+      this.getNextDogs();
     }
     this.$store.dispatch("initialiseFavouriteDogs");
-  },
-  created() {
-    this.$store.dispatch("fetchDogs");
   },
 };
 </script>
