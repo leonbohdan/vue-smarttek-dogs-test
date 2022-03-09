@@ -20,14 +20,7 @@ export default {
   computed: {
     ...mapGetters(["favouriteDogs"]),
   },
-  mounted() {},
-  created() {
-    // if (localStorage.getItem("favouriteDogs")) {
-    //   let favDogs = JSON.parse(localStorage.getItem("favouriteDogs"));
-    //   console.log("favDogs", ...favDogs);
-    //   console.log("favDogs");
-    //   this.$store.commit("addFavouriteDogs", favDogs);
-    // }
+  mounted() {
     this.$store.dispatch("initialiseFavouriteDogs");
   },
 };

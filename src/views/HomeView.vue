@@ -27,11 +27,10 @@ export default {
       this.$store.dispatch("fetchDogs");
       this.$store.dispatch("clearChoosedBreed");
     }
+    this.$store.dispatch("initialiseFavouriteDogs");
   },
   created() {
     this.$store.dispatch("fetchDogs");
-    console.log("this.$store", this.$store);
-    console.log("this.$route", this.$route.name);
   },
 };
 </script>

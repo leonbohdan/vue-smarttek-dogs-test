@@ -43,13 +43,28 @@ export default new Vuex.Store({
     ADD_BREEDS(state, event) {
       state.breeds = event;
     },
-    ADD_FAVOURITE_DOGS(state, dog) {
-      state.favouriteDogs.push(dog);
-      // localStorage.removeItem("favouriteDogs");
+    ADD_FAVOURITE_DOGS(state, favDog) {
+      state.favouriteDogs.push(favDog);
+
       localStorage.setItem(
         "favouriteDogs",
         JSON.stringify(state.favouriteDogs)
       );
+    },
+    ADD_FAVOURITE_DOGS_INITIALISE(state) {
+      if (localStorage.getItem("favouriteDogs")) {
+        let favDogsLS = JSON.parse(localStorage.getItem("favouriteDogs"));
+
+        const equals =
+          state.favouriteDogs.length === favDogsLS.length &&
+          state.favouriteDogs.every((v, i) => v === favDogsLS[i]);
+
+        if (equals) {
+          return;
+        }
+
+        state.favouriteDogs.push(...favDogsLS);
+      }
     },
     SHOW_ALL_BREEDS(state) {
       state.showAllBreeds = !state.showAllBreeds;
@@ -99,20 +114,8 @@ export default new Vuex.Store({
       commit("ADD_FAVOURITE_DOGS", dog);
     },
     initialiseFavouriteDogs({ commit }) {
-      if (localStorage.getItem("favouriteDogs") && !this.state.favouriteDogs) {
-        let favDogs = JSON.parse(localStorage.getItem("favouriteDogs"));
-        console.log("favDogs", favDogs);
-        commit("ADD_FAVOURITE_DOGS", favDogs);
-        // localStorage.removeItem("favouriteDogs");
-      }
+      commit("ADD_FAVOURITE_DOGS_INITIALISE");
     },
-    // initialiseFavouriteDogs() {
-    //   if (localStorage.getItem("favouriteDogs")) {
-    //     let favDogs = JSON.parse(localStorage.getItem("favouriteDogs"));
-    //     console.log("favDogs", favDogs);
-    //     console.log("favDogs");
-    //   }
-    // },
     // async fetchDogs2({ commit }) {
     //   const res = await fetch("https://dog.ceo/api/breeds/image/random/20");
     //   const dogs = await res.json();
