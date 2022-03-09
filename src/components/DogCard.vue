@@ -49,6 +49,8 @@
         fill="#fff"
       />
     </svg>
+
+    <span class="breedName">{{ breedName }}</span>
   </v-img>
 </template>
 
@@ -67,6 +69,11 @@ export default {
       default: 0,
     },
   },
+  data() {
+    return {
+      breedName: "",
+    };
+  },
   computed: {
     ...mapGetters(["favouriteDogs"]),
     isAlreadyInFavorites() {
@@ -74,6 +81,11 @@ export default {
     },
   },
   methods: {
+    getBreedNameFromURL() {
+      const url = new URL(this.imageLink).pathname;
+      let arr = url.split("/");
+      this.breedName = arr[2];
+    },
     addToFavourite(dog) {
       if (!this.isAlreadyInFavorites) {
         console.log("addToFavourite");
@@ -86,6 +98,9 @@ export default {
       }
     },
   },
+  mounted() {
+    console.log("getBreedNameFromURL", this.getBreedNameFromURL());
+  },
 };
 </script>
 
@@ -97,6 +112,17 @@ export default {
   transition: transform .2s ease-in-out
   &:hover
     transform: scale(1.02)
+
+  .breedName
+    position: absolute
+    bottom: 15px
+    right: 15px
+    color: #fff
+    font-weight: 700
+    font-size: 22px
+    letter-spacing: 0.01em
+    &::first-letter
+      text-transform: uppercase
 
   .svgHeart
     position: absolute

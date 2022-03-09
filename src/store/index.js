@@ -124,11 +124,6 @@ export default new Vuex.Store({
     initialiseFavouriteDogs({ commit }) {
       commit("ADD_FAVOURITE_DOGS_INITIALISE");
     },
-    // async fetchDogs2({ commit }) {
-    //   const res = await fetch("https://dog.ceo/api/breeds/image/random/20");
-    //   const dogs = await res.json();
-    //   commit("ADD_DOGS", dogs);
-    // },
   },
   modules: {},
 });
