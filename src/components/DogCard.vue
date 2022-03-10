@@ -1,6 +1,6 @@
 <template>
   <v-img
-    max-height="290"
+    max-height="240"
     max-width="360"
     min-height="50"
     min-width="100"
