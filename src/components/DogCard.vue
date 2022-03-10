@@ -60,7 +60,6 @@
     </svg>
 
     <span class="breedName">{{ dogBreed }}</span>
-    <!-- </div> -->
   </v-img>
 </template>
 
